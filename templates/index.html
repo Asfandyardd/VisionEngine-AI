@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionEngine — Professional Image Classification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --bg-ivory: #fcfbf9;
+            --surface-gray: #f4f2ec;
+            --border-subtle: #e6e2d6;
+            --text-charcoal: #1c1a17;
+            --text-muted: #736e65;
+            --accent-terracotta: #c25e38;
+            --accent-hover: #a84d2b;
+        }
+
+        body {
+            background-color: var(--bg-ivory);
+            color: var(--text-charcoal);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Background Grain & Mesh */
+        .bg-grid-pattern {
+            background-image: radial-gradient(var(--border-subtle) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        /* 3D Scene Perspective */
+        .perspective-container {
+            perspective: 1200px;
+        }
+
+        .floating-3d-card {
+            transform-style: preserve-3d;
+            transition: transform 0.1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Smooth Glass Translucency */
+        .editorial-glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+        }
+
+        /* Scanning Line Animation */
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(500%); }
+        }
+        .animate-scan {
+            animation: scanline 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Fade Up Entrance */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-grid-pattern min-h-screen flex flex-col justify-between selection:bg-[#c25e38] selection:text-white">
+
+    <!-- TOP NAVIGATION -->
+    <header class="w-full border-b border-[#e6e2d6] bg-[#fcfbf9]/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-[#c25e38] flex items-center justify-center text-white shadow-md shadow-[#c25e38]/20">
+                    <i data-lucide="eye" class="w-5 h-5"></i>
+                </div>
+                <span class="font-bold text-lg tracking-tight text-[#1c1a17]">Vision<span class="text-[#c25e38]">Engine</span></span>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[#736e65]">
+                <a href="#how-it-works" class="hover:text-[#1c1a17] transition-colors">How it works</a>
+                <a href="#how-it-works" class="hover:text-[#1c1a17] transition-colors">Supported Images</a>
+                <a href="#about" class="hover:text-[#1c1a17] transition-colors">About</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="#upload-section" class="bg-[#1c1a17] text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-[#c25e38] transition-all duration-300 shadow-sm">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <main class="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center flex-grow">
+        
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-7 space-y-8 animate-fade-up">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f4f2ec] border border-[#e6e2d6] text-xs font-medium text-[#736e65]">
+                <span class="w-2 h-2 rounded-full bg-[#c25e38] animate-pulse"></span>
+                Next-Gen Computer Vision Model v4.2
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-[#1c1a17] leading-[1.08]">
+                Understand Every <br><span class="text-[#c25e38]">Visual Asset.</span>
+            </h1>
+            
+            <p class="text-base sm:text-lg text-[#736e65] max-w-xl font-normal leading-relaxed">
+                Upload an image and let our advanced computer vision model identify features, classify objects, and parse structural details with speed and precision.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+                <a href="#upload-section" class="bg-[#c25e38] text-white font-medium px-7 py-3.5 rounded-2xl hover:bg-[#a84d2b] transition-all duration-300 shadow-lg shadow-[#c25e38]/25 flex items-center gap-2 group text-sm">
+                    Classify an Image 
+                    <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                </a>
+                <a href="#how-it-works" class="text-sm font-semibold text-[#1c1a17] px-6 py-3.5 rounded-2xl hover:bg-[#f4f2ec] transition-colors border border-transparent hover:border-[#e6e2d6]">
+                    See how it works
+                </a>
+            </div>
+        </div>
+
+        <!-- Right Hero: 3D Parallax Visual Object -->
+        <div class="lg:col-span-5 relative perspective-container flex justify-center">
+            <div id="hero-3d-object" class="floating-3d-card w-full max-w-md aspect-square rounded-3xl editorial-glass p-6 shadow-2xl relative flex flex-col justify-between overflow-hidden group">
+                
+                <!-- Ambient decorative glow -->
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-[#c25e38]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- Floating Computer Vision HUD Header -->
+                <div class="flex justify-between items-center z-10 text-xs font-mono text-[#736e65]">
+                    <span class="flex items-center gap-1.5"><i data-lucide="cpu" class="w-3.5 h-3.5 text-[#c25e38]"></i> NEURAL_LENS_v4</span>
+                    <span class="px-2 py-0.5 bg-[#f4f2ec] rounded-md border border-[#e6e2d6]">ONLINE</span>
+                </div>
+
+                <!-- Simulated Central Computer Vision Frame -->
+                <div class="relative my-auto w-full aspect-video rounded-2xl bg-[#1c1a17] overflow-hidden shadow-inner border border-[#e6e2d6]/30 flex items-center justify-center">
+                    <!-- Scanner Laser -->
+                    <div class="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#c25e38] to-transparent shadow-[0_0_15px_#c25e38] animate-scan z-20"></div>
+                    
+                    <!-- Wireframe grid overlay -->
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:16px_16px]"></div>
+                    
+                    <!-- Floating Bounding Tag -->
+                    <div class="absolute border border-[#c25e38] rounded-lg p-2 w-32 h-20 flex flex-col justify-between z-10 shadow-lg bg-[#c25e38]/10 backdrop-blur-xs">
+                        <span class="text-[9px] font-mono text-white bg-[#c25e38] px-1 rounded w-max">CONFIDENCE: 99.4%</span>
+                        <div class="flex justify-between items-end">
+                            <div class="w-2 h-2 border-l border-b border-white"></div>
+                            <div class="w-2 h-2 border-r border-b border-white"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HUD Footer Metadata -->
+                <div class="grid grid-cols-3 gap-2 text-center z-10">
+                    <div class="p-2 rounded-xl bg-[#f4f2ec]/70 border border-[#e6e2d6]">
+                        <p class="text-[10px] text-[#736e65] uppercase">Latency</p>
+                        <p class="text-xs font-mono font-semibold text-[#1c1a17]">42ms</p>
+                    </div>
+                    <div class="p-2 rounded-xl bg-[#f4f2ec]/70 border border-[#e6e2d6]">
+                        <p class="text-[10px] text-[#736e65] uppercase">Classes</p>
+                        <p class="text-xs font-mono font-semibold text-[#1c1a17]">1,000+</p>
+                    </div>
+                    <div class="p-2 rounded-xl bg-[#f4f2ec]/70 border border-[#e6e2d6]">
+                        <p class="text-[10px] text-[#736e65] uppercase">Accuracy</p>
+                        <p class="text-xs font-mono font-semibold text-[#c25e38]">98.7%</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- UPLOAD EXPERIENCE SECTION -->
+    <section id="upload-section" class="max-w-4xl mx-auto px-6 py-12 w-full">
+        <div class="editorial-glass p-8 md:p-12 rounded-3xl shadow-xl relative overflow-hidden">
+            
+            <div class="text-center max-w-lg mx-auto mb-8">
+                <h2 class="text-2xl font-bold text-[#1c1a17] tracking-tight mb-2">Upload Asset for Analysis</h2>
+                <p class="text-sm text-[#736e65]">Drag and drop your file below to initiate high-speed computer vision parsing.</p>
+            </div>
+
+            <form id="upload-form" action="/predict" method="POST" enctype="multipart/form-data" class="space-y-6">
+                
+                <!-- Drop Zone -->
+                <div id="drop-zone" class="border-2 border-dashed border-[#e6e2d6] rounded-2xl p-10 text-center cursor-pointer hover:border-[#c25e38] transition-all duration-300 relative group bg-[#f4f2ec]/50">
+                    <input type="file" name="file" id="file-input" class="absolute inset-0 opacity-0 cursor-pointer z-30" accept="image/*" required>
+                    
+                    <!-- Default Prompt Content -->
+                    <div id="prompt-content" class="space-y-4 transition-transform duration-300 group-hover:scale-[1.02]">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-white border border-[#e6e2d6] shadow-sm flex items-center justify-center text-[#c25e38] group-hover:scale-110 transition-transform">
+                            <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-[#1c1a17]">Drop your image here, or <span class="text-[#c25e38] underline underline-offset-4">browse files</span></p>
+                            <p class="text-xs text-[#736e65] mt-1.5 font-mono">PNG, JPG, JPEG • Maximum file size 10MB</p>
+                        </div>
+                    </div>
+
+                    <!-- Image Preview State -->
+                    <div id="preview-container" class="hidden relative z-20 flex flex-col items-center">
+                        <div class="relative group/img max-w-xs mx-auto overflow-hidden rounded-xl shadow-md border border-[#e6e2d6] bg-white p-2">
+                            <img id="image-preview" class="max-h-56 mx-auto object-contain rounded-lg transition-transform duration-500 hover:scale-105" alt="Asset Preview">
+                            <button type="button" id="remove-file" class="absolute top-4 right-4 bg-black/70 hover:bg-[#c25e38] text-white p-1.5 rounded-full transition-colors z-30">
+                                <i data-lucide="x" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="mt-4 flex items-center gap-2 text-xs font-mono text-[#736e65]">
+                            <i data-lucide="file" class="w-3.5 h-3.5 text-[#c25e38]"></i>
+                            <span id="file-name" class="truncate max-w-[200px]">filename.jpg</span>
+                            <span>•</span>
+                            <span id="file-size">2.4 MB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis CTA Button -->
+                <button type="submit" id="submit-btn" disabled class="w-full bg-[#1c1a17] text-white font-medium py-4 rounded-2xl opacity-50 cursor-not-allowed hover:bg-[#c25e38] transition-all duration-300 shadow-lg shadow-black/10 flex items-center justify-center gap-2 text-sm">
+                    <span>Analyze Image Matrix</span>
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                </button>
+            </form>
+
+            <!-- Loading Overlay Modal inside Dropzone during processing -->
+            <div id="loading-overlay" class="absolute inset-0 bg-[#fcfbf9]/90 backdrop-blur-md hidden flex-col items-center justify-center space-y-4 z-40 transition-opacity">
+                <div class="relative w-12 h-12 border-3 border-[#e6e2d6] border-t-[#c25e38] rounded-full animate-spin"></div>
+                <div class="text-center">
+                    <p class="text-sm font-bold text-[#1c1a17] tracking-wide">Analyzing image...</p>
+                    <p class="text-xs text-[#736e65] font-mono mt-1">Executing computer-vision grid inspection...</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURE SECTION -->
+    <section id="how-it-works" class="max-w-7xl mx-auto px-6 py-20 border-t border-[#e6e2d6] mt-12 w-full">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2 class="text-xs font-semibold text-[#c25e38] uppercase tracking-widest mb-3">Core Capabilities</h2>
+            <h3 class="text-3xl font-bold tracking-tight text-[#1c1a17]">Engineered for high-precision inference.</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="editorial-glass p-8 rounded-3xl hover:border-[#c25e38] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-2xl bg-[#f4f2ec] border border-[#e6e2d6] flex items-center justify-center text-[#c25e38] mb-6 group-hover:scale-110 transition-transform">
+                    <i data-lucide="zap" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-lg font-bold text-[#1c1a17] mb-2">Fast Classification</h4>
+                <p class="text-sm text-[#736e65] leading-relaxed">Get lightning-fast predictions from our optimized image classification backbone.</p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="editorial-glass p-8 rounded-3xl hover:border-[#c25e38] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-2xl bg-[#f4f2ec] border border-[#e6e2d6] flex items-center justify-center text-[#c25e38] mb-6 group-hover:scale-110 transition-transform">
+                    <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-lg font-bold text-[#1c1a17] mb-2">Confidence Score</h4>
+                <p class="text-sm text-[#736e65] leading-relaxed">Granular probabilistic breakdown ensuring absolute clarity over model certainty.</p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="editorial-glass p-8 rounded-3xl hover:border-[#c25e38] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-2xl bg-[#f4f2ec] border border-[#e6e2d6] flex items-center justify-center text-[#c25e38] mb-6 group-hover:scale-110 transition-transform">
+                    <i data-lucide="Layers" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-lg font-bold text-[#1c1a17] mb-2">Simple Workflow</h4>
+                <p class="text-sm text-[#736e65] leading-relaxed">Upload your file, run matrix analysis, and instantly understand your visual asset.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / ABOUT SECTION -->
+    <footer id="about" class="border-t border-[#e6e2d6] py-12 bg-[#fcfbf9] text-center text-xs text-[#736e65]">
+        <div class="max-w-xl mx-auto px-6 space-y-3">
+            <h4 class="font-bold text-sm text-[#1c1a17]">About VisionEngine</h4>
+            <p>VisionEngine uses state-of-the-art computer vision models designed to parse, classify, and extract structural details from visual assets with high speed and reliability.</p>
+            <p class="pt-4 border-t border-[#e6e2d6]/60">© 2026 VisionEngine AI • Professional Computer Vision Suite</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        lucide.createIcons();
+
+        // 3D Parallax Mouse Tracking for Hero Object
+        const heroCard = document.getElementById('hero-3d-object');
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 45;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+            heroCard.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // File Upload Handlers
+        const fileInput = document.getElementById('file-input');
+        const promptContent = document.getElementById('prompt-content');
+        const previewContainer = document.getElementById('preview-container');
+        const imagePreview = document.getElementById('image-preview');
+        const fileName = document.getElementById('file-name');
+        const fileSize = document.getElementById('file-size');
+        const submitBtn = document.getElementById('submit-btn');
+        const uploadForm = document.getElementById('upload-form');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const removeFileBtn = document.getElementById('remove-file');
+
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    fileName.textContent = file.name;
+                    fileSize.textContent = (file.size / (1024*1024)).toFixed(2) + ' MB';
+                    promptContent.classList.add('hidden');
+                    previewContainer.classList.remove('hidden');
+                    submitBtn.removeAttribute('disabled');
+                    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        removeFileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            fileInput.value = '';
+            previewContainer.classList.add('hidden');
+            promptContent.classList.remove('hidden');
+            submitBtn.setAttribute('disabled', 'true');
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        });
+
+        uploadForm.addEventListener('submit', () => {
+            if(fileInput.files.length > 0) {
+                loadingOverlay.classList.remove('hidden');
+                loadingOverlay.classList.add('flex');
+            }
+        });
+    </script>
+</body>
+</html>
