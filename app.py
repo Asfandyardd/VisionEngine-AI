@@ -74,6 +74,10 @@ def predict():
     
     if file:
         filename = file.filename
+        
+        # Ensure the uploads directory exists before saving the file
+        os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+        
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
         
@@ -113,6 +117,7 @@ def predict():
             ai_breakdown=ai_breakdown_text,
             detected_object=detected_name
         )
+
 if __name__ == '__main__':
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
     app.run(debug=True)
